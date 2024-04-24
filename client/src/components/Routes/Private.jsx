@@ -1,0 +1,30 @@
+import React from 'react'
+import { useEffect,useState } from 'react'
+import { useAuth } from '../../context/auth'
+import { Outlet } from 'react-router';
+import axios from 'axios';
+import LoadSpinner from '../LoadSpinner';
+const BACKEND_URL = "http://localhost:8085";
+
+ 
+export default function PrivateRoute(){ 
+const [ok,setOk] = useState(false);
+const [auth,setAuth]=useAuth()
+
+useEffect(()=>{
+const authCheck = async()=>{
+const res  =await axios.get(`${BACKEND_URL}/api/v1/auth/userauth`)
+console.log(res);
+if(res.data.ok){
+    setOk(true)
+}
+else{
+    setOk(false)
+}
+}
+console.log("This is auth   ",auth)
+if(auth?.token) authCheck();
+},[auth?.token])
+
+return ok?<Outlet/>:<LoadSpinner/>
+}

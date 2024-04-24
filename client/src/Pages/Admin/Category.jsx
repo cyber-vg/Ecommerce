@@ -71,7 +71,7 @@ const handledelete=async(pId)=>{
         const { data } = await axios.delete(`${BACKEND_URL}/api/v1/category/delcategory/${pId}`);
         if(data.sucess){
             console.log(data.msg);
-            
+             
             getAllCat();
         }
     } catch (error) {

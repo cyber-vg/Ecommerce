@@ -9,10 +9,10 @@ const ImageSlider = () => {
     infinite: true,
     speed: 1000, // Transition speed in milliseconds
     autoplay: true,
-    autoplaySpeed: 4000, // Auto-play interval in milliseconds
+    autoplaySpeed: 2000, // Auto-play interval in milliseconds
     slidesToShow: 1,
     slidesToScroll: 1,
-    pauseOnHover: true // Pause auto-play on hover
+     // Pause auto-play on hover
   };
 
   return (

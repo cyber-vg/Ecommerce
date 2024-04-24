@@ -9,7 +9,7 @@ function Homepage() {
     
     <>
       
-   <Navbar/>
+   {/* <Navbar/> */}
    {/* <pre>{JSON.stringify(auth,null,4)}</pre> */}
    <ImageSlider/>
    <CardGrid/>

@@ -25,12 +25,14 @@ import UserProfile from './Pages/User/UserProfile.jsx'
 import Userorders from './Pages/User/Userorders.jsx'
 import Getproducts from './Pages/Admin/Getproducts.jsx'
 import UpdateProduct from './Pages/Admin/UpdateProduct.jsx'
+import ProductDetail from './Pages/ProductDetail.jsx'
 
 function App() {
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' element={<Layout/>}>
     <Route  path='/' element={<Homepage/>} />
+    <Route  path='/product/:id' element={<ProductDetail/>} />
     <Route  path='/about' element={<About/>} />
     <Route  path='/contact' element={<Contact/>} />
     <Route  path='/policy' element={<Privacypolcy/>} />

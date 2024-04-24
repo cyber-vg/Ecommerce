@@ -165,3 +165,47 @@ export const updateProductController = async (req, res) => {
     });
   }
 };
+export const realtedProduct = async (req, res) => {
+  try {
+    const { pid, cid } = req.params;
+    const product = await productModel
+      .find({
+        category: cid,
+        _id: { $ne: pid },
+      })
+      .select("-photo")
+      .limit(3)
+      .populate("category");
+    res.status(200).send({
+      success: false,
+      product,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      error,
+    });
+  }
+};
+
+export const productFilter = async (req, res) => {
+  try {
+    const { checked, radio } = req.body;
+    log(checked, radio);
+    let args = {};
+    if (checked.length > 0) args.category = checked;
+    if (radio.length) args.price = { $gte: radio[0], $lte: radio[1] };
+    const product = await productModel.find(args);
+    res.status(200).send({
+      success: true,
+      product,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      error,
+    });
+  }
+};

@@ -5,9 +5,12 @@ import { ToastContainer, toast } from 'react-toastify';
 import { FaBell } from "react-icons/fa";
 import { BsCart4 } from "react-icons/bs";
 import { useAuth } from '../../context/auth';
+import { useCart } from '../../context/cart';
 import 'react-toastify/dist/ReactToastify.css';
+import { Avatar, Badge} from 'antd'
 import DropdownMenu from './DropdownMenu';
  function Header(){
+  const[cart]=useCart()
     const [auth,setauth]=useAuth()
     const [isOpen, setIsOpen] = useState(false);
     const toggleDropdown = () => {
@@ -41,7 +44,7 @@ import DropdownMenu from './DropdownMenu';
         <NavLink to={'about'} >About Us</NavLink>
     </li >
     <li className='m-4 '>
-        {console.log(auth.user,"????????????????????????????/")} 
+        
         {
   !localStorage.getItem('auth') ? (
     <li className='m-4'>
@@ -89,20 +92,20 @@ import DropdownMenu from './DropdownMenu';
           >
             Dashboard
           </NavLink>
-          <NavLink
+          {/* <NavLink
             to={'#'}
             className="block px-4 py-2 text-base text-black hover:bg-gray-300"
             role="menuitem"
           >
             Settings
-          </NavLink>
-          <NavLink
+          </NavLink> */}
+          {/* <NavLink
             to={'#'}
             className="block px-4 py-2 text-base text-black hover:bg-gray-300"
             role="menuitem"
           >
             Earnings
-          </NavLink>
+          </NavLink> */}
         </div>
         <div className="border-t border-gray-100" />
         <div className="py-1" role="none">
@@ -120,11 +123,16 @@ import DropdownMenu from './DropdownMenu';
   )
 }
     </li>
+    
     <li className='m-5 '>
-        <NavLink to={'notification'} ><FaBell /></NavLink>
-    </li>
-    <li className='m-5 '>
-        <NavLink to={'cart'} ><BsCart4 /></NavLink>
+
+<Badge count={cart?.length} showZero className='p-2'  > 
+<NavLink to={'cart'} className=" flex" ><BsCart4 /></NavLink>
+
+ </Badge>
+
+        
+        {console.log(cart)}
     </li>
     </ul>
 </div>
